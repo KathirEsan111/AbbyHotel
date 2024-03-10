@@ -7,12 +7,35 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Remove="Pages\Categories\Create.cshtml" />
+    <Content Remove="Pages\Categories\Test.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.0.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="6.0.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="6.0.0">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <UpToDateCheckInput Remove="Pages\Categories\Create.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <_ContentIncludedByDefault Remove="Pages\Categories\Create.cshtml" />
+    <_ContentIncludedByDefault Remove="Pages\Categories\Test.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="Pages\Categories\Create.cshtml" />
+    <None Include="Pages\Categories\Test.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <UpToDateCheckInput Remove="Pages\Categories\Test.cshtml" />
   </ItemGroup>
 
 </Project>

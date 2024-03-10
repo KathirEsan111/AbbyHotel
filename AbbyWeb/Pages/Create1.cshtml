@@ -1,0 +1,17 @@
+﻿@page
+@model AbbyWeb.Pages.Create1Model
+<form method="post">
+    <div class="border p-3 mt-4">
+        <h2 class="text-primary pl-3">Create Category</h2>
+        <br />
+        <div class="mb-3">
+            <label asp-for="@Model.Category.Name"></label>
+            <input type="text" asp-for="@Model.Category.Name" class="form-control" />
+        </div>
+        <div class="mb-3">
+            <label asp-for="@Model.Category.DisplayOrder"></label>
+            <input type="text" asp-for="@Model.Category.DisplayOrder" class="form-control" />
+        </div>
+        <button type="submit" class="btn btn-primary">Create</button>
+    </div>
+</form>

@@ -1,7 +1,9 @@
 using AbbyWeb.Data;
 using AbbyWeb.Model;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+
 
 namespace AbbyWeb.Pages
 {
@@ -16,11 +18,19 @@ namespace AbbyWeb.Pages
         public void OnGet()
         {
         }
-        public async Task<IActionResult> OnPost(Category category)
+        public async Task<IActionResult> OnPost(Category category)           
         {
-           await _db.Category.AddAsync(category);
-            await _db.SaveChangesAsync();
-            return RedirectToPage("Categories/Index");
+            if (category.Name == category.DisplayOrder.ToString())
+            {
+                ModelState.AddModelError(string.Empty, "Display Order and Name cannot be same!");/*use catetory.Name instead of to show error in Name field string.Empt*/
+            }
+            if (ModelState.IsValid)
+            {
+                await _db.Category.AddAsync(category);
+                await _db.SaveChangesAsync();
+                return RedirectToPage("Categories/Index");
+            }
+            return Page();
         }
     }
 }

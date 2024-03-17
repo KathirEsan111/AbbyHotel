@@ -6,13 +6,13 @@ using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
 
-namespace AbbyWeb.Pages
+namespace AbbyWeb.Pages.Admin.Categories
 {
-    public class Create1Model : PageModel
+    public class CreateModel : PageModel
     {
         private readonly ApplicationDbContext _db;
         public Category Category { get; set; }
-        public Create1Model(ApplicationDbContext db)
+        public CreateModel(ApplicationDbContext db)
         {
             _db = db;
         }
@@ -30,7 +30,7 @@ namespace AbbyWeb.Pages
                 await _db.Category.AddAsync(category);
                 await _db.SaveChangesAsync();
                 TempData["Success"] = "Created Successfully";
-                return RedirectToPage("Categories/Index");
+                return RedirectToPage("Index");
             }
             return Page();
         }

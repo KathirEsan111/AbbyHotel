@@ -6,13 +6,13 @@ using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
 
-namespace AbbyWeb.Pages
+namespace AbbyWeb.Pages.Admin.Categories
 {
-    public class DeleteModel : PageModel
+    public class EditModel : PageModel
     {
         private readonly ApplicationDbContext _db;
         public Category Category { get; set; }
-        public DeleteModel(ApplicationDbContext db)
+        public EditModel(ApplicationDbContext db)
         {
             _db = db;
         }
@@ -25,12 +25,19 @@ namespace AbbyWeb.Pages
 
         }
         public async Task<IActionResult> OnPost(Category category)           
-        {           
-                _db.Category.Remove(category);
+        {
+            if (category.Name == category.DisplayOrder.ToString())
+            {
+                ModelState.AddModelError(string.Empty, "Display Order and Name cannot be same!");/*use catetory.Name instead of to show error in Name field string.Empt*/
+            }
+            if (ModelState.IsValid)
+            {
+                 _db.Category.Update(category);
                 await _db.SaveChangesAsync();
-                TempData["Success"] = "Deleted Successfully";
-                return RedirectToPage("Categories/Index");          
-            
+                TempData["Success"] = "Edited Successfully";
+                return RedirectToPage("Index");
+            }
+            return Page();
         }
     }
 }

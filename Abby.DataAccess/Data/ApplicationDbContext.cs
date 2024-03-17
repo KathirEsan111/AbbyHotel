@@ -1,7 +1,8 @@
-﻿using AbbyWeb.Model;
+﻿
+using Abby.Models;
 using Microsoft.EntityFrameworkCore;
 
-namespace AbbyWeb.Data
+namespace AbbyWeb.DataAccess.Data
 {
     public class ApplicationDbContext:DbContext
     {

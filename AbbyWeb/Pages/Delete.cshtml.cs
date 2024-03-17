@@ -1,5 +1,6 @@
-using AbbyWeb.Data;
-using AbbyWeb.Model;
+
+using Abby.Models;
+using AbbyWeb.DataAccess.Data;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.AspNetCore.Mvc.RazorPages;

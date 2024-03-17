@@ -11,5 +11,6 @@ namespace AbbyWeb.Model
         [Display(Name="Display Order")]
         [Range(1,100)]
         public string DisplayOrder { get; set; }
+        //Test comment
     }
 }

@@ -1,4 +1,5 @@
 
+using Abby.DataAccess.Repository.IRepository;
 using Abby.Models;
 using AbbyWeb.DataAccess.Data;
 using Microsoft.AspNetCore.Mvc;
@@ -10,24 +11,25 @@ namespace AbbyWeb.Pages.Admin.Categories
 {
     public class DeleteModel : PageModel
     {
-        private readonly ApplicationDbContext _db;
+        private readonly IUnitOfWork _unitOfWork;
+
         public Category Category { get; set; }
-        public DeleteModel(ApplicationDbContext db)
+        public DeleteModel(IUnitOfWork unitOfWork)
         {
-            _db = db;
+            _unitOfWork = unitOfWork;
         }
         public void OnGet(int id)
         {
-            Category=_db.Category.First(c => c.Id == id);
+            Category=_unitOfWork.Category.GetFirstOrDefault(c => c.Id == id);
             //Category = _db.Category.FirstOrDefault(c => c.Id == id);
             //Category = _db.Category.SingleOrDefault(c => c.Id == id);//also use single
             //Category = _db.Category.Where(c => c.Id == id);
 
         }
         public async Task<IActionResult> OnPost(Category category)           
-        {           
-                _db.Category.Remove(category);
-                await _db.SaveChangesAsync();
+        {
+            _unitOfWork.Category.Remove(category);
+                 _unitOfWork.Save();
                 TempData["Success"] = "Deleted Successfully";
                 return RedirectToPage("Index");          
             

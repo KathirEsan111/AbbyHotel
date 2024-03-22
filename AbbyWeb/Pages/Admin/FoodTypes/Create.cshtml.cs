@@ -1,3 +1,4 @@
+using Abby.DataAccess.Repository.IRepository;
 using Abby.Models;
 using AbbyWeb.DataAccess.Data;
 using Microsoft.AspNetCore.Mvc;
@@ -7,12 +8,12 @@ namespace AbbyWeb.Pages.Admin.FoodTypes
 {
     public class CreateModel : PageModel
     {
-        private readonly ApplicationDbContext _db;
+        private readonly IUnitOfWork _IunitOfWork;
 
         public Foodtype Foodtype { get; set; }
-        public CreateModel(ApplicationDbContext db)
+        public CreateModel(IUnitOfWork IunitOfWork)
         {
-            _db = db;   
+            _IunitOfWork = IunitOfWork;   
         }
         public void OnGet()
         {
@@ -22,8 +23,8 @@ namespace AbbyWeb.Pages.Admin.FoodTypes
         {
             if (ModelState.IsValid)
             {
-                await _db.Foodtype.AddAsync(foodtype);
-                await _db.SaveChangesAsync();
+                 _IunitOfWork.Foodtype.Add(foodtype);
+                 _IunitOfWork.Save();
                 TempData["success"] = "Created Successfully";
                 return RedirectToPage("Index");
             }

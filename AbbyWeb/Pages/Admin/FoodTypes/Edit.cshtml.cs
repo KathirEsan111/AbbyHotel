@@ -1,3 +1,4 @@
+using Abby.DataAccess.Repository.IRepository;
 using Abby.Models;
 using AbbyWeb.DataAccess.Data;
 using Microsoft.AspNetCore.Mvc;
@@ -7,15 +8,15 @@ namespace AbbyWeb.Pages.Admin.FoodTypes
 {
     public class EditModel : PageModel
     {
-        private readonly ApplicationDbContext _db;
+        private readonly IUnitOfWork _IunitOfWork;
         public Foodtype Foodtype { get; set; }
-        public EditModel(ApplicationDbContext db)
+        public EditModel(IUnitOfWork IunitOfWork)
         {
-            _db = db;
+            _IunitOfWork = IunitOfWork;
         }
         public void OnGet(int id)
         {
-            Foodtype = _db.Foodtype.First(c => c.Id == id);
+            Foodtype = _IunitOfWork.Foodtype.GetFirstOrDefault(c => c.Id == id);
 
         }
         public async Task<IActionResult> OnPost(Foodtype foodtype) 
@@ -23,8 +24,8 @@ namespace AbbyWeb.Pages.Admin.FoodTypes
             
             if (ModelState.IsValid)
             {
-                 _db.Foodtype.Update(foodtype);
-                await _db.SaveChangesAsync();
+                _IunitOfWork.Foodtype.Update(foodtype);
+                _IunitOfWork.Save();
                 TempData["Success"] = "Edited Successfully";
                 return RedirectToPage("Index");
             }

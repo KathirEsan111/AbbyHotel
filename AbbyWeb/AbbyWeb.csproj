@@ -23,4 +23,12 @@
     <Folder Include="Pages\Customer\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <UpToDateCheckInput Remove="Pages\Admin\MenuItems\Index.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <_ContentIncludedByDefault Remove="Pages\Admin\MenuItems\Index.cshtml" />
+  </ItemGroup>
+
 </Project>

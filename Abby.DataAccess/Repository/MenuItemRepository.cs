@@ -12,6 +12,7 @@ namespace Abby.DataAccess.Repository
     public class MenuItemRepository:Repository<MenuItem>, IMenuItemRepository
     {
         private readonly ApplicationDbContext _db;
+
         public MenuItemRepository(ApplicationDbContext db):base(db)
         {
             _db = db;   

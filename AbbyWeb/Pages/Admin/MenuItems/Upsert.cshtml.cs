@@ -12,13 +12,17 @@ namespace AbbyWeb.Pages.Admin.MenuItems
     public class UpsertModel : PageModel
     {
         private readonly IUnitOfWork _IunitOfWork;
+        private readonly IWebHostEnvironment _WebHostEnvironment;
         public MenuItem MenuItem { get; set; }
+        
         public IEnumerable <SelectListItem> CateoryList { get; set; }
         public IEnumerable <SelectListItem> FoodTypeList { get; set; }
-        public UpsertModel(IUnitOfWork IunitOfWork)
+        public UpsertModel(IUnitOfWork IunitOfWork, IWebHostEnvironment webHostEnvironment)
         {
             _IunitOfWork = IunitOfWork;
-            MenuItem = new();
+            _WebHostEnvironment = webHostEnvironment;
+            MenuItem = new();           
+
         }
         public void OnGet()
         {
@@ -36,14 +40,29 @@ namespace AbbyWeb.Pages.Admin.MenuItems
 
         public async Task<ActionResult> OnPost() 
         {
-            //if (ModelState.IsValid)
-            //{
-            //     _IunitOfWork.Foodtype.Add(foodtype);
-            //     _IunitOfWork.Save();
-            //    TempData["success"] = "Created Successfully";
-            //    return RedirectToPage("Index");
-            //}
-            return Page();
+
+            string webRootPath = _WebHostEnvironment.WebRootPath;
+            var files = HttpContext.Request.Form.Files;
+            if (MenuItem.Id == 0)
+            {
+                //Create
+                string fileName_new = Guid.NewGuid().ToString();
+                var uploads=Path.Combine(webRootPath, @"Images\MenuItems");
+                var extension = Path.GetExtension(files[0].FileName);
+                using (var filestream = new FileStream(Path.Combine(uploads, fileName_new + extension), FileMode.Create))
+                {
+                    files[0].CopyTo(filestream);
+                }
+                MenuItem.Image = @"\Images\MenuItems\" + fileName_new + extension;
+                _IunitOfWork.MenuItem.Add(MenuItem);
+                _IunitOfWork.Save();               
+
+            }
+            else
+            {
+                //edit
+            }
+            return RedirectToPage("./Index");
         }
     }
 }

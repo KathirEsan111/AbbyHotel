@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Abby.DataAccess.Repository.IRepository
 {
-    public interface IMenuItemRepository
+    public interface IMenuItemRepository:IRepository<MenuItem>
     {
         void Update(MenuItem menuItem);
     }

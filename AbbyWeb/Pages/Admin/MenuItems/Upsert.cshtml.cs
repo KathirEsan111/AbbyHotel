@@ -24,8 +24,12 @@ namespace AbbyWeb.Pages.Admin.MenuItems
             MenuItem = new();           
 
         }
-        public void OnGet()
+        public void OnGet(int? id)
         {
+            if (id != null)
+            {
+                MenuItem = _IunitOfWork.MenuItem.GetFirstOrDefault(c => c.Id == id);
+            }
           CateoryList= _IunitOfWork.Category.GetAll().Select(i => new SelectListItem
             {
                 Text = i.Name,

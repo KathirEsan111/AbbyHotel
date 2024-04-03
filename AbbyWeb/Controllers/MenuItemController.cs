@@ -8,10 +8,12 @@ namespace AbbyWeb.Controllers
     public class MenuItemController : Controller
     {
         private readonly IUnitOfWork _unitOfWork;
+        private readonly IWebHostEnvironment _WebHostEnvironment;
 
-        public MenuItemController(IUnitOfWork unitOfWork )
+        public MenuItemController(IUnitOfWork unitOfWork, IWebHostEnvironment webHostEnvironment)
         {
             _unitOfWork = unitOfWork;
+            _WebHostEnvironment=webHostEnvironment;
         }
         [HttpGet]
         public IActionResult Get()
@@ -21,6 +23,20 @@ namespace AbbyWeb.Controllers
             {
                 data = menuItemList
             });
+        }
+        [HttpDelete("{id}")]
+        public IActionResult Delete(int id)
+        {
+            var objFromdb=_unitOfWork.MenuItem.GetFirstOrDefault(c => c.Id == id);
+            var oldImagePath = Path.Combine(_WebHostEnvironment.WebRootPath, objFromdb.Image.TrimStart('\\'));
+            if (System.IO.File.Exists(oldImagePath))
+            {
+                System.IO.File.Delete(oldImagePath);
+            }
+            _unitOfWork.MenuItem.Remove(objFromdb);
+            _unitOfWork.Save();
+
+            return Json(new { success = true, message = "Delete successful." });
         }
     }
 }

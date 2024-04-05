@@ -17,7 +17,7 @@ $(document).ready(function () {
                     return `<div class="w-75 btn-group">
                             <a href="/Admin/MenuItems/upsert?id=${data}" class="btn btn-success text-white mx-2"
                                     ><i class="bi bi-pencil"></i></a>
-                           <a onClick=Delete('/api/MenuItem/'+${data})" class="btn btn-danger text-white mx-2"
+                           <a onClick=Delete('/api/MenuItem/'+${data}) class="btn btn-danger text-white mx-2"
                                     ><i class="bi bi-trash3"></i></a>
                              </div>`
                 }, "width":"15%"

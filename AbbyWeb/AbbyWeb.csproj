@@ -20,7 +20,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Pages\Customer\" />
+    <Folder Include="Pages\Customer\Cart\" />
     <Folder Include="wwwroot\Images\MenuItems\" />
   </ItemGroup>
 
@@ -30,6 +30,16 @@
 
   <ItemGroup>
     <_ContentIncludedByDefault Remove="Pages\Admin\MenuItems\Index.cshtml" />
+    <_ContentIncludedByDefault Remove="Pages\Customer\Home\Details.cshtml" />
+    <_ContentIncludedByDefault Remove="Pages\Customer\Home\Index.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <UpToDateCheckInput Remove="Pages\Customer\Home\Index.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <UpToDateCheckInput Remove="Pages\Customer\Home\Details.cshtml" />
   </ItemGroup>
 
 </Project>

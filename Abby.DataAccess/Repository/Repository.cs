@@ -52,6 +52,15 @@ namespace Abby.DataAccess.Repository
             {
                 query = query.Where(filter);
             }
+            if (includeProperties != null)
+            {
+                //abc,,xyz -> abc xyz
+                foreach (var includeProperty in includeProperties.Split(
+                    new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries))
+                {
+                    query = query.Include(includeProperty);
+                }
+            }
             return query.FirstOrDefault();
         }
 

@@ -13,5 +13,6 @@ namespace AbbyWeb.DataAccess.Data
         public DbSet<Category> Category { get; set; }
         public DbSet<Foodtype> Foodtype { get; set; }
         public DbSet<MenuItem> MenuItem { get; set; }
+        public DbSet<ApplicationUser> ApplicationUsers { get; set; }
     }
 }

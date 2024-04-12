@@ -18,7 +18,7 @@ namespace Abby.Models
         public string Description { get; set; }
         public string Image { get; set; }
 
-        [Range(1,1000, ErrorMessage ="Price should be between $1 and $1000")]
+        [Range(1, 1000, ErrorMessage = "Price should be between $1 and $1000")]
         public double Price { get; set; }
         [Display(Name="Food Type")]
         public int FoodtypeId { get; set; }

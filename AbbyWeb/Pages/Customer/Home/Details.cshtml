@@ -2,6 +2,8 @@
 @model AbbyWeb.Pages.Customer.Home.DetailsModel
 <div class="">
     <form method="post">
+        <input asp-for="ShoppingCart.MenuItemId" hidden/>
+        <input asp-for="ShoppingCart.ApplicationUserId" hidden/>
         <div class="container backgroundWhite">
             <div class="card">
                 <div class="card-header">

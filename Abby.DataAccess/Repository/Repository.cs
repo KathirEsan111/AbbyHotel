@@ -19,7 +19,7 @@ namespace Abby.DataAccess.Repository
         public Repository(ApplicationDbContext db)
         {
             _db = db;
-            //_db.MenuItem.Include(u => u.Foodtype).Include(u => u.Category);
+            //_db.ShoppingCart.Include(u => u.MenuItem).ThenInclude(u => u.Category);
             this.dbSet=db.Set<T>();
         }
         public void Add(T entity)

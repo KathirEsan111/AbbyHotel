@@ -3,7 +3,14 @@
 
     <form method="post">
         <br />
-                <div class="container">
+    @if (Model.ShoppingCartList.Count() == 0)
+    {
+        <div>
+            Please add items to shopping cart.
+        </div>
+    }
+    else{
+    <div class="container">
                     <div class="card">
                         <div class="card-header bg-dark text-light ml-0 ">
                             <div class="row">
@@ -46,9 +53,8 @@
                                                     <i class="bi bi-dash-square"></i>
                                                 </button>
                                         </div>
-                                        <div class="col-2 col-sm-4 col-lg-2 text-right"
-                                        asp-page-handler="remove" asp-route-cartId="@item.Id">
-                                            <button type="submit" class="btn btn-outline-danger">
+                                        <div class="col-2 col-sm-4 col-lg-2 text-right">                                        
+                                       <button type="submit" asp-page-handler="remove" asp-route-cartId="@item.Id" class="btn btn-outline-danger">
                                                 <i class="bi bi-trash-fill"></i>
                                             </button>
                                         </div>
@@ -76,10 +82,12 @@
                         </div>
                         <div class="card-footer">
                             <div class="col-12 col-lg-4 offset-lg-8 col-md-6 offset-md-6">
-                                <a class="btn btn-success form-control">Summary</a>
+                                <a asp-page="Summary" class="btn btn-success form-control">Summary</a>
                             </div>
                         </div>
                     </div>
                 </div>
+                }
     </form>
 
+                                

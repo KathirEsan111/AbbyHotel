@@ -42,14 +42,26 @@ namespace AbbyWeb.Pages.Customer.Cart
         }
         public IActionResult OnPostMinus(int cartId)
         {
+           
             var cart = _iunitOfWork.ShoppingCart.GetFirstOrDefault(u => u.Id == cartId);
-            _iunitOfWork.ShoppingCart.DecrementCount(cart, 1);
+            if (cart.Count == 1)
+            {
+                _iunitOfWork.ShoppingCart.Remove(cart);
+                _iunitOfWork.Save();
+            }
+            else 
+            {
+                _iunitOfWork.ShoppingCart.DecrementCount(cart, 1);
+                
+            }
             return RedirectToPage("/Customer/Cart/Index");
+
         }
         public IActionResult OnPostRemove(int cartId)
         {
             var cart = _iunitOfWork.ShoppingCart.GetFirstOrDefault(u => u.Id == cartId);
             _iunitOfWork.ShoppingCart.Remove(cart);
+            _iunitOfWork.Save();
             return RedirectToPage("/Customer/Cart/Index");
         }
 

@@ -1,4 +1,5 @@
 ﻿using Abby.DataAccess.Repository.IRepository;
+using Abby.Models;
 using AbbyWeb.DataAccess.Data;
 using System;
 using System.Collections.Generic;
@@ -19,12 +20,21 @@ namespace Abby.DataAccess.Repository
             Foodtype = new FoodtypeRepository(_db);
             MenuItem = new MenuItemRepository(_db);
             ShoppingCart = new ShoppingCartRepository(_db);
+            OrderHeader=new OrderHeaderRepository(_db);
+            OrderDetail = new OrderDetailRepository(_db);
+            ApplicationUser=new ApplicationUserRepository(_db);
+
+
 
         }
         public ICategoryRepository Category { get; private set; }
         public IFoodtypeRepository Foodtype { get; private set; }
         public IMenuItemRepository MenuItem { get; private set; }
         public IShoppingCartRepository ShoppingCart { get; private set; }
+        public IOrderDetailRepository OrderDetail { get; private set; }
+        public IOrderHeaderRepository OrderHeader { get; private set; }
+        public IApplicationUserRepository ApplicationUser { get; private set; }
+
 
         public void Dispose()
         {

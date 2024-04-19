@@ -20,6 +20,9 @@ namespace Abby.Models
         [ForeignKey("MenuItemId")]
         public virtual MenuItem MenuItem { get; set; }
         public int Count { get; set; }
+        [Required]
+        public double Price { get; set; }
+        public string Name { get; set; }
 
 
     }

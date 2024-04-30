@@ -24,13 +24,14 @@ namespace AbbyWeb.Pages.Customer.Cart
         public void OnGet(int id)
         {
             OrderHeader orderHeader=_unitOfWork.OrderHeader.GetFirstOrDefault(c=>c.Id==id);
-            if(orderHeader.SessionId!=null)
+            if(orderHeader.SessionId !=null)
             {
                 var service = new SessionService();
                 Session session=service.Get(orderHeader.SessionId);
                 if (session.PaymentStatus.ToLower() == "paid")
                 {
                     orderHeader.Status = SD.StatusSubmitted;
+                    orderHeader.PaymentIntendId = session.PaymentIntentId;
                     _unitOfWork.Save();
                 }
             }

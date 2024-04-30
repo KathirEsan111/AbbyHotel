@@ -1,0 +1,28 @@
+﻿@page
+@model AbbyWeb.Pages.Order.OrderListModel
+<div class="container p-3">
+    <div class="row pt-4">
+        <div class="col-6">
+            <h2 class="text-primary">Menu Item List</h2>
+        </div>
+        
+    </div>
+
+    <br />
+    <table id="DT_Load" class="table table-bordered table-striped" style="width:100%">
+        <thead>
+            <tr>
+                <th>Order ID</th>
+                <th>Name</th>
+                <th>Eamil</th>
+                <th>Order Total</th>
+                <th>PickUp Time</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+
+    </table>
+</div>
+@section Scripts{
+    <script src="~/js/orderList.js"></script>
+}

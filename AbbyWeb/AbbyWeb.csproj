@@ -36,6 +36,7 @@
     <_ContentIncludedByDefault Remove="Pages\Customer\Cart\Summary.cshtml" />
     <_ContentIncludedByDefault Remove="Pages\Customer\Home\Details.cshtml" />
     <_ContentIncludedByDefault Remove="Pages\Customer\Home\Index.cshtml" />
+    <_ContentIncludedByDefault Remove="Pages\Order\OrderList.cshtml" />
   </ItemGroup>
 
   <ItemGroup>
@@ -52,6 +53,10 @@
 
   <ItemGroup>
     <UpToDateCheckInput Remove="Pages\Customer\Cart\OrderConfirmation.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <UpToDateCheckInput Remove="Pages\Order\OrderList.cshtml" />
   </ItemGroup>
 
 </Project>

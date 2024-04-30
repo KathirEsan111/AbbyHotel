@@ -26,7 +26,8 @@ namespace AbbyWeb.Pages.Customer.Cart
             var claim = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier);
             if (claim != null)
             {
-                ShoppingCartList=_iunitOfWork.ShoppingCart.GetAll(filter:u=>u.ApplicationUserId==claim.Value, includeProperties:"MenuItem,MenuItem.Foodtype,MenuItem.Category");
+                ShoppingCartList=_iunitOfWork.ShoppingCart.GetAll(filter:u=>u.ApplicationUserId==claim.Value, 
+                    includeProperties:"MenuItem,MenuItem.Foodtype,MenuItem.Category");
             }
             foreach(var cartItem in ShoppingCartList)
             {

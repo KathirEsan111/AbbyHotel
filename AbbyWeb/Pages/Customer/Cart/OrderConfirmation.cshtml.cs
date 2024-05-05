@@ -31,7 +31,7 @@ namespace AbbyWeb.Pages.Customer.Cart
                 if (session.PaymentStatus.ToLower() == "paid")
                 {
                     orderHeader.Status = SD.StatusSubmitted;
-                    orderHeader.PaymentIntendId = session.PaymentIntentId;
+                   orderHeader.PaymentIntendId = session.PaymentIntentId;
                     _unitOfWork.Save();
                 }
             }

@@ -79,7 +79,7 @@ namespace AbbyWeb.Pages.Customer.Cart
                 //_unitOfWork.ShoppingCart.RemoveRange(ShoppingCartList);
                 _unitOfWork.Save();
 
-                var domain = "http://localhost:44343/";
+                var domain = "http://localhost:32210/";
                 var options = new SessionCreateOptions
                 {
                     LineItems = new List<SessionLineItemOptions>(),                                
@@ -116,8 +116,10 @@ namespace AbbyWeb.Pages.Customer.Cart
                 Session session = service.Create(options);
                 Response.Headers.Add("Location", session.Url);
                 OrderHeader.SessionId = session.Id;
-              //  Session confirmedSession = service.Get(session.Id);
-                OrderHeader.PaymentIntendId = session.PaymentIntentId;
+                //Session confirmedSession = service.Get(session.Id);
+
+                //OrderHeader.PaymentIntendId = confirmedSession.PaymentIntentId;
+                // OrderHeader.PaymentIntendId = session.PaymentIntentId;
                 _unitOfWork.Save();
                 return new StatusCodeResult(303);
             }

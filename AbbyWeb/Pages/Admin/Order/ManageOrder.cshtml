@@ -7,6 +7,7 @@
 <h1 class="text-primary py-3">Manage Order's</h1>
 <form method="post">
     <div class="container row bg-white p-2 mb-3 rounded">
+
         @foreach(var item in Model.OrderDetailVM)
         {
             
@@ -16,7 +17,8 @@
                 <div class="col-4">
                     Order Number : @item.OrderHeader.Id
                     <ul class="text-info">
-                        @foreach(var details in item.OrderDetails){
+                        @foreach(var details in item.OrderDetails)
+                        {
                         <li>@details.Name x @details.Count</li>
                         }
                     </ul>
@@ -35,18 +37,23 @@
 
                             @if (item.OrderHeader.Status == SD.StatusSubmitted)
                             {
-                                <button type="submit" class="btn btn-primary form-control mb-3">
+                                <button type="submit" class="btn btn-primary form-control mb-3"
+                                asp-page-handler="OrderInProcess" asp-route-orderId="@item.OrderHeader.Id">
                                     <i class="bi bi-check-square"></i> &nbsp; Start Cooking
                                 </button>
                             }
                             @if (item.OrderHeader.Status == SD.StatusInProcess)
                             {
-                                <button type="submit" class="btn btn-success form-control mb-3">
+                                <button type="submit" class="btn btn-success form-control mb-3"
+                                asp-page-handler="OrderReady" asp-route-orderId="@item.OrderHeader.Id">
+                                    
                                     <i class="bi bi-emoji-laughing"></i> &nbsp; Order Ready
                                 </button>
                             }
                            
-                                <button type="submit" class="btn btn-warning form-control mb-3">
+                                <button type="submit" class="btn btn-warning form-control mb-3"
+                                asp-page-handler="OrderCancelled" asp-route-orderId="@item.OrderHeader.Id">
+                                
                                     <i class="bi bi-x-square-fill"></i> &nbsp; Cancel Order
                                 </button>
                                                  

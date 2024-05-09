@@ -2,11 +2,13 @@ using Abby.DataAccess.Repository.IRepository;
 using Abby.Models;
 using Abby.Models.ViewModel;
 using Abby.Utility;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace AbbyWeb.Pages.Admin.Order
 {
+    [Authorize(Roles =$"{SD.ManagerRole},{SD.KitchenRole}")]
     public class ManageOrderModel : PageModel
     { 
     
@@ -28,10 +30,29 @@ namespace AbbyWeb.Pages.Admin.Order
                 OrderDetailVM individual = new OrderDetailVM()
                 {
                     OrderHeader = item,
-                    OrderDetails = _unitOfWork.OrderDetail.GetAll(u => u.OrderId == item.Id).ToList(),
+                    OrderDetails = _unitOfWork.OrderDetail.GetAll(u => u.OrderId == item.Id).ToList()
                 };
                 OrderDetailVM.Add(individual);
             }
         }
+        public  IActionResult OnPostOrderInProcess(int orderId)
+        {
+            _unitOfWork.OrderHeader.UpdateStatus(orderId, SD.StatusInProcess);
+            _unitOfWork.Save();
+            return RedirectToPage("/Admin/Order/ManageOrder");
+        }
+        public IActionResult OnPostOrderReady(int orderId)
+        {
+            _unitOfWork.OrderHeader.UpdateStatus(orderId, SD.StatusReady);
+            _unitOfWork.Save();
+            return RedirectToPage("/Admin/Order/ManageOrder");
+        }
+        public IActionResult OnPostOrderCancelled(int orderId)
+        {
+            _unitOfWork.OrderHeader.UpdateStatus(orderId, SD.StatusCancelled);
+            _unitOfWork.Save();
+            return RedirectToPage("/Admin/Order/ManageOrder");
+        }
+
     }
 }

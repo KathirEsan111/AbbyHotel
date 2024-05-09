@@ -19,7 +19,7 @@ namespace AbbyWeb.Pages.Admin.Order
             OrderDetailVM = new()
             {
                 OrderHeader = _unitOfWork.OrderHeader.GetFirstOrDefault(c => c.Id == id, includeProperties: "ApplicationUser"),
-                OrderDetails = _unitOfWork.OrderDetail.GetAll(c => c.OrderId == id).ToList(),
+                OrderDetails = _unitOfWork.OrderDetail.GetAll(c => c.OrderId == id).ToList()
             };
         }
     }

@@ -69,7 +69,8 @@
             </div>
 
             <div class="col-lg-4 col-12">
-                <h4 class="d-flex justify-content-between align-content-center mb-3">
+                <button type="submit" disabled class="btn btn-outline-info form-control">@Model.OrderDetailVM.OrderHeader.Status</button>
+                <h4 class="d-flex justify-content-between align-content-center mb-3 pt-3">
                     <span class="text-muted">Order ID: </span>
                     <span class="badge badge-secondary badge-pill">@Model.OrderDetailVM.OrderHeader.Id</span>
                 </h4>
@@ -82,10 +83,8 @@
                                     <small class="text-muted">Quantity : @detail.Count</small>
                                 </div>
                                 <span class="text-muted">$ @(detail.Price * detail.Count)</span>
-                            </li>
-                                                                       
-                                   
-
+                            </li>                                                                    
+                            
                     }
 
                     <li class="list-group-item d-flex justify-content-between bg-light">
@@ -96,15 +95,25 @@
 
                 </ul>
 
-                <button type="submit" disabled class="btn btn-info form-control">ORDER STATUS</button>
+                
 
 
                 <div class="row pt-3">
-                    <div class="col-6">
-                        <button type="submit" class="btn btn-warning form-control"><i class="bi bi-x-square"></i> Cancel Order</button>
+                    <div class="col-12 pb-2">
+                    <button type="submit"  class="btn btn-primary form-control"
+                                asp-page-handler="OrderReady" asp-route-orderId="@Model.OrderDetailVM">
+                            Complete Order
+                        </button>
                     </div>
                     <div class="col-6">
-                        <button type="submit" class="btn btn-danger form-control"><i class="bi bi-currency-dollar"></i> Refund Order</button>
+                        <button type="submit" class="btn btn-warning form-control
+                                asp-page-handler="OrderReady" asp-route-orderId="@item.OrderHeader.Id">
+                            <i class="bi bi-x-square"></i> Cancel Order</button>
+                    </div>
+                    <div class="col-6">
+                        <button type="submit" class="btn btn-danger form-control
+                                asp-page-handler="OrderRefund" asp-route-orderId="@item.OrderHeader.Id">
+                        <i class="bi bi-currency-dollar"></i> Refund Order</button>
                     </div>
                 </div>
 

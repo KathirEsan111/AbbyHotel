@@ -1,10 +1,46 @@
 ﻿@page
 @model AbbyWeb.Pages.Admin.Order.OrderListModel
+@{
+    var status = HttpContext.Request.Query["status"];
+    var Cancelled = "text-primary";
+    var Completed = "text-primary";
+    var ready = "text-primary";
+    var InProcess = "text-primary";
+    if (status == "Cancelled")
+    {
+        Cancelled = "active text-white";
+    }
+    else if(status == "Completed"){
+
+        Completed = "active text-white";
+    }
+    else if (status == "ready")
+    {
+        ready = "active text-white";
+    }
+    else
+    {
+        InProcess = "active text-white";
+    }
+}
 <div class="container p-3">
-    <div class="row pt-4">
-        <div class="col-6">
+    <div class="d-flex justify-content-between">
+        <div class="p-2">
             <h2 class="text-primary">Menu Item List</h2>
         </div>
+        <div class="p-2">
+            <ul class="list-group list-group-horizontal-sm">
+                <a style="text-decoration:none;" asp-page="OrderList" asp-route-status="Cancelled">
+                <li class="list-group-item @Cancelled">Cancelled</li></a>
+                <a style="text-decoration:none;" asp-page="OrderList" asp-route-status="Completed">
+                <li class="list-group-item @Completed">Completed</li></a>
+                <a style="text-decoration:none;" asp-page="OrderList" asp-route-status="ready">
+                <li class="list-group-item @ready">Ready for PickUp</li></a>
+                <a style="text-decoration:none;" asp-page="OrderList" asp-route-status="InProcess">
+                <li class="list-group-item @InProcess">InProcess</li></a>
+            </ul>
+        </div>
+
         
     </div>
 

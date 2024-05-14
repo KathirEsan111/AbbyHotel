@@ -1,5 +1,7 @@
+using Abby.DataAccess.Repository;
 using Abby.DataAccess.Repository.IRepository;
 using Abby.Models;
+using Abby.Utility;
 using AbbyWeb.DataAccess.Data;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -47,8 +49,11 @@ namespace AbbyWeb.Pages.Customer.Cart
             var cart = _iunitOfWork.ShoppingCart.GetFirstOrDefault(u => u.Id == cartId);
             if (cart.Count == 1)
             {
-                _iunitOfWork.ShoppingCart.Remove(cart);
+                var count = _iunitOfWork.ShoppingCart.GetAll(u => u.ApplicationUserId == cart.ApplicationUserId).ToList().Count - 1;
+                _iunitOfWork.ShoppingCart.Remove(cart);                
                 _iunitOfWork.Save();
+                HttpContext.Session.SetInt32(SD.SessionCart, count);
+
             }
             else 
             {
@@ -62,7 +67,9 @@ namespace AbbyWeb.Pages.Customer.Cart
         {
             var cart = _iunitOfWork.ShoppingCart.GetFirstOrDefault(u => u.Id == cartId);
             _iunitOfWork.ShoppingCart.Remove(cart);
+          var count= _iunitOfWork.ShoppingCart.GetAll(u => u.ApplicationUserId == cart.ApplicationUserId).ToList().Count-1;            
             _iunitOfWork.Save();
+            HttpContext.Session.SetInt32(SD.SessionCart, count);
             return RedirectToPage("/Customer/Cart/Index");
         }
 

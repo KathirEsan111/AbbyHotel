@@ -18,12 +18,13 @@ namespace Abby.DataAccess.Migrations
                     UserId = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     OrderDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     OrderTotal = table.Column<double>(type: "float", nullable: false),
-                    PickupTime = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    PickupTime = table.Column<DateTime>(type: "ccc", nullable: false),
                     Status = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Comments = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     TransactionId = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     PickupName = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     PhoneNumber = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    
                 },
                 constraints: table =>
                 {

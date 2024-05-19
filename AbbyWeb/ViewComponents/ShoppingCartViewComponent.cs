@@ -32,6 +32,11 @@ namespace AbbyWeb.ViewComponents
 
                 }
             }
+            else
+            {
+                HttpContext.Session.Clear();
+                return View(count);
+            }
         }
     }
 }

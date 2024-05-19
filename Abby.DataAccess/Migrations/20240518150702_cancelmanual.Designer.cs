@@ -4,6 +4,7 @@ using AbbyWeb.DataAccess.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Abby.DataAccess.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240518150702_cancelmanual")]
+    partial class cancelmanual
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -40,7 +42,7 @@ namespace Abby.DataAccess.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Category", (string)null);
+                    b.ToTable("Category");
                 });
 
             modelBuilder.Entity("Abby.Models.Foodtype", b =>
@@ -57,7 +59,7 @@ namespace Abby.DataAccess.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Foodtype", (string)null);
+                    b.ToTable("Foodtype");
                 });
 
             modelBuilder.Entity("Abby.Models.MenuItem", b =>
@@ -95,7 +97,7 @@ namespace Abby.DataAccess.Migrations
 
                     b.HasIndex("FoodtypeId");
 
-                    b.ToTable("MenuItem", (string)null);
+                    b.ToTable("MenuItem");
                 });
 
             modelBuilder.Entity("Abby.Models.OrderDetails", b =>
@@ -128,7 +130,7 @@ namespace Abby.DataAccess.Migrations
 
                     b.HasIndex("OrderId");
 
-                    b.ToTable("OrderDetails", (string)null);
+                    b.ToTable("OrderDetails");
                 });
 
             modelBuilder.Entity("Abby.Models.OrderHeader", b =>
@@ -177,7 +179,7 @@ namespace Abby.DataAccess.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("OrderHeader", (string)null);
+                    b.ToTable("OrderHeader");
                 });
 
             modelBuilder.Entity("Abby.Models.ShoppingCart", b =>
@@ -204,7 +206,7 @@ namespace Abby.DataAccess.Migrations
 
                     b.HasIndex("MenuItemId");
 
-                    b.ToTable("ShoppingCart", (string)null);
+                    b.ToTable("ShoppingCart");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>

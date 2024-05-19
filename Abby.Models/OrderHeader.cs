@@ -28,9 +28,7 @@ namespace Abby.Models
         [Required]
         [Display(Name ="Pick Up Time")]
         public DateTime PickupTime { get; set; }
-        [Required]
-        [NotMapped]
-        public DateTime PickUpDate { get; set; }
+       
         public string Status { get; set; }
         public string? Comments { get; set; }
         public string? SessionId { get; set; }
@@ -41,6 +39,9 @@ namespace Abby.Models
         [Display(Name ="Phone Number")]
         [Required]
         public string PhoneNumber { get; set; }
-
+        [Required]
+        [NotMapped]
+        public DateTime PickUpDate { get; set; }
+       
     }
 }

@@ -39,6 +39,7 @@ namespace AbbyWeb.Pages.Customer.Cart
                 _unitOfWork.ShoppingCart.GetAll(c => c.ApplicationUserId == orderHeader.UserId).ToList();
             _unitOfWork.ShoppingCart.RemoveRange(shoppingCarts);
             _unitOfWork.Save();
+            HttpContext.Session.Clear();
             OrderId = id;
         }
     }

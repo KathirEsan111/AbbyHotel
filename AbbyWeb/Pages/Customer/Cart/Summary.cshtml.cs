@@ -58,6 +58,7 @@ namespace AbbyWeb.Pages.Customer.Cart
                 OrderHeader.OrderDate = System.DateTime.Now;
                 OrderHeader.UserId = claim.Value;
                 OrderHeader.PickupTime = Convert.ToDateTime(OrderHeader.PickUpDate.ToShortDateString() + " " + OrderHeader.PickupTime.ToShortTimeString());
+                
                 _unitOfWork.OrderHeader.Add(OrderHeader);
                 _unitOfWork.Save();
 

@@ -2,12 +2,15 @@ using Abby.DataAccess.Repository.IRepository;
 using Abby.Models;
 using Abby.Models.ViewModel;
 using Abby.Utility;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Stripe;
 
 namespace AbbyWeb.Pages.Admin.Order
 {
+    
+    [Authorize(Roles = $"{SD.ManagerRole},{SD.KitchenRole}")]
     public class OrderDetailsModel : PageModel
     {
         private readonly IUnitOfWork _unitOfWork;

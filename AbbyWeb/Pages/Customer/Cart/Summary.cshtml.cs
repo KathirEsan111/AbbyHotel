@@ -80,13 +80,13 @@ namespace AbbyWeb.Pages.Customer.Cart
                 //_unitOfWork.ShoppingCart.RemoveRange(ShoppingCartList);
                 _unitOfWork.Save();
 
-                var domain = "http://localhost:32210/";
+                var domain = "https://abbyhotel.azurewebsites.net/";
                 var options = new SessionCreateOptions
                 {
                     LineItems = new List<SessionLineItemOptions>(),                                
                     Mode = "payment",
                     SuccessUrl = domain + $"Customer/Cart/OrderConfirmation?id={OrderHeader.Id}",
-                    CancelUrl = domain + "/cancel.html",
+                    CancelUrl = domain + "Customer/Cart",
                 };
                 //add line items
                 foreach (var item in ShoppingCartList)
